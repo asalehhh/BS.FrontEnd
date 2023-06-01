@@ -1,0 +1,50 @@
+<div class="about-section">
+    <h1>User Profile Page</h1>
+    <p>You can see you account and transactions</p>
+    <button type="button" class="btn btn-logout" (click)="logOut()">Logout</button>
+</div>
+
+<h2 style="text-align:center"></h2>
+<div class="row">
+    <div class="column-1">
+        <div class="card">
+            <img src="../../../assets/images/avatar.svg" class="profile-image" alt="Jane" style="width:100%">
+            <div class="container">
+                <h2>{{this.profile.firstName + " " + this.profile.lastName}}</h2>
+                
+                <p *ngIf="hasAccount">Account Number : {{this.profile.accountNumber}}</p>
+                <p *ngIf="!hasAccount">Initial Balance : <input type="number" [(ngModel)]="initialBalance" id="initialBalance" /> </p> 
+                <p *ngIf="hasAccount">Total Balance : {{this.profile.totalBalance}} $</p>
+                <div *ngIf="!hasAccount">
+                    <button type="button" class="btn btn-create" (click)="create()">Create Account</button>
+                </div>
+                <div *ngIf="hasAccount">
+                    <button type="button" class="btn btn-create" (click)="remove()">Remove Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column-2">
+        <div class="card">
+            <table datatable [dtOptions]="dtOptions"
+                class="table table-striped table-bordered table-sm row-border hover">
+                <thead>
+                    <tr class="head">
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let trs of transactions">
+                        <td>{{ trs.recordDate }}</td>
+                        <td>{{ trs.amount }}</td>
+                        <td>{{ trs.description }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="text-align:center" *ngIf="!hasAccount">No transactions to display</h3>
+        </div>
+    </div>
+</div>

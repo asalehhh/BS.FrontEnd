@@ -1,0 +1,13 @@
+<div style="text-align:center">
+  <div class="log-form">
+    <h2 class="top-box-header">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onClickSubmit(loginForm.value)">
+      <input type="text" title="username" placeholder="username" formControlName="userName" required />
+     
+      <input type="password" title="username" placeholder="password" formControlName="password" required />
+      <button type="submit" class="btn">Login</button>
+
+      <p class="error">{{this.error}}</p>
+    </form>
+  </div>
+</div>
